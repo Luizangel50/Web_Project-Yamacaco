@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<!--<script type="text/javascript" src="js/canvas.js"></script>-->
+	<script type="text/javascript" src="js/jquery.event.drag-2.0.js"></script>
+	<script src="http://localhost:4000/socket.io/socket.io.js"></script>
+  
+	<script type="text/javascript" src="js/draw-script.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+	<!--<link rel="stylesheet" href="style.css" />-->
+  <link rel="stylesheet" href="styles/style.css" />
+	<title>Yamacaco Chat</title>
+
+	<style type="text/css">
+	* { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { padding: 2px 28px; bottom: 0; width: 100%; left: 0; }
+      form input { border: solid; padding: 10px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; margin: 0 -28px;}
+      form button { right: 2px; position: absolute; width: 53px; background: rgb(0, 153, 153); border: double; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; width: 100%; word-wrap: break-word; display: inline-block;}
+      #messages li {position: relative; padding: 5px 10px; width: 100%; word-wrap: break-word; }
+      #messages li:nth-child(odd) { background: #eee; width: 100%; word-wrap: break-word; }
+    </style>
+</head>
+<body>
+
+  <ul>
+    <li class="login page">
+      <div class="form">
+        <h3 class="title">Welcome to Yamacaco chat! <br /> Write a nickname:</h3>
+        <input class="usernameInput" type="text" maxlength="14" onsubmit="showDiv("messages")" />
+      </div>
+    </li>
+
+    <li class="chat page">
+    	<p style="margin-top: 5px; "><label style="color: white">Drawing tool: <select id="dtool">
+    		<option value="pencil">Pencil</option>
+            <option value="line">Line</option>
+            <option value="rect">Rectangle</option>
+        </select></label></p>
+
+    	<article style="margin-top: 10px; "><!--canvas is inserted here--></article>
+      
+    	<div id="messages" style="position: fixed; height: 100px; bottom: 45px; overflow-y:auto; background-color: white; ">
+    	</div>
+
+    	<form action="" style="background: #000; position: fixed; " onsubmit="showDiv("messages")">
+    	 <input id="m" class="m" type="text" autocomplete="off" placeholder="Type here..." >
+    	 <button>Send</button>
+    	</form>
+
+      <script>
+        //Show chat
+        function showDiv(messages){
+          document.getElementById('messages').style.display = "none";
+        };
+      </script>
+    </li>
+  
+  </ul>
+
+	<script type="text/javascript" src="js/chat-script.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+
+</body>

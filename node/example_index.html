@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Yamacaco chat</title>
+    <style type="text/css">
+      #container { position: relative; top: 15px; margin-left: 5px; /*width: 100vw; display: block;*/}
+      #imageView { border: 1px solid #000; }
+      #imageTemp { position: absolute; top: 1px; left: 1px; }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { padding: 2px 28px; bottom: 0; width: 100%; left: 0; }
+      form input { border: solid; padding: 10px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; margin: 0 -28px;}
+      form button { right: 2px; position: absolute; width: 53px; background: rgb(0, 153, 153); border: double; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; width: 100%; word-wrap: break-word; }
+      #messages li {position: relative; padding: 5px 10px; width: 100%; word-wrap: break-word; }
+      #messages li:nth-child(odd) { background: #eee; width: 100%; word-wrap: break-word; }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  </head>
+  <body>
+
+    <p style="margin-top: 5px; "><label>Drawing tool: <select id="dtool">
+        <option value="line">Line</option>
+        <option value="rect">Rectangle</option>
+        <option value="pencil">Pencil</option>
+    </select></label></p>
+
+    <div id="container">
+      <canvas id="imageView" width="1000" height="400">
+        <p>Unfortunately, your browser is currently unsupported by our web
+        application.  We are sorry for the inconvenience. Please use one of the
+        supported browsers listed below, or draw the image you want using an
+        offline tool.</p>
+        <p>Supported browsers: <a href="http://www.opera.com">Opera</a>, <a
+          href="http://www.mozilla.com">Firefox</a>, <a
+          href="http://www.apple.com/safari">Safari</a>, and <a
+          href="http://www.konqueror.org">Konqueror</a>.</p>
+      </canvas>
+    </div>
+
+    <div id="messages" style="position: absolute; height: 100px; bottom: 45px; overflow-y:auto; background-color: white; ">
+    </div>
+
+    <form action="" style="background: #000; position: fixed; " >
+     <input id="m" class="m" type="text" autocomplete="off" placeholder="Type here..." >
+     <button>Send</button>
+    </form>
+    
+    <script>
+      var socket = io();
+      var d = $('#messages');     
+      
+      $('form').submit(function(){
+        socket.emit('chat message', $('#m').val());
+        $('#m').val('');
+        return false;
+      });
+
+      socket.on('chat message', function(msg){
+        if(msg != ""){
+          $('#messages').append($('<li>').text(msg));
+          d.scrollTop(d[0].scrollHeight);
+        }
+      });
+    </script>
+
+    <script type="text/javascript" src="canvas.js" ></script>
+
+       <!-- <script type="text/javascript">
+        var socket = io();
+        var d = $('#container');     
+        
+        $('canvas').submit(function(){
+          socket.emit('chat draw', d.element());
+          d.val('');
+          return false;
+        });
+
+        socket.on('chat draw', function(draw){
+            d.append($('<canvas>').element(draw));
+            //d.scrollTop(d[0].scrollHeight);
+        });
+        </script>-->
+
+  </body>
+</html>
