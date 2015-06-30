@@ -96,7 +96,7 @@ $(function() {
       .addClass(typingClass)
       .append($usernameDiv, $messageBodyDiv);
 
-    addMessageElement($messageDiv, options);
+    //addMessageElement($messageDiv, options);
   }
 
   // Adds the visual chat typing message
@@ -237,9 +237,9 @@ $(function() {
   });
 
   // Whenever the server emits 'new message', update the chat body
-  socket.on('new message', function (data) {
-    addChatMessage(data);
-  });
+  // socket.on('new message', function (data) {
+  //   addChatMessage(data);
+  // });
 
   // Whenever the server emits 'user joined', log it in the chat body
   socket.on('user joined', function (data) {
