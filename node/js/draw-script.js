@@ -1,6 +1,7 @@
-(function() {
+function draw(){
   var App;
   App = {};
+  
   /*
   	Init 
   */
@@ -14,14 +15,17 @@
     document.getElementsByTagName('article')[0].appendChild(App.canvas);
     App.ctx = App.canvas.getContext("2d");
     App.ctx.fillStyle = "solid";
-    App.ctx.strokeStyle = "#ECD018";
     App.ctx.lineWidth = 5;
     App.ctx.lineCap = "round";
-    App.socket = io.connect('http://localhost:4000');
+    var ip = "192.168.0.29"; //write here your ip address
+    App.socket = io.connect(ip + ':4000');
+    
     App.socket.on('draw', function(data) {
-      return App.draw(data.x, data.y, data.type);
+      return App.draw(data.x, data.y, data.type, data.color);
     });
-    App.draw = function(x, y, type) {
+    App.draw = function(x, y, type, color) {
+      
+      App.ctx.strokeStyle = color;
       if (type === "dragstart") {
         App.ctx.beginPath();
         return App.ctx.moveTo(x, y);
@@ -37,21 +41,27 @@
   	Draw Events
   */
   $('canvas').live('drag dragstart dragend', function(e) {
-    var offset, type, x, y;
+    var offset, type, x, y, color;
     type = e.handleObj.type;
+    color = $('#dtool').find('option:selected').text();
     offset = $(this).offset();
     e.offsetX = e.layerX - offset.left;
     e.offsetY = e.layerY - offset.top+30;
     x = e.offsetX;
     y = e.offsetY;
-    App.draw(x, y, type);
+    
+    App.draw(x, y, type, color);
+    
     App.socket.emit('drawClick', {
       x: x,
       y: y,
-      type: type
+      type: type,
+      color: color
     });
   });
   $(function() {
     return App.init();
   });
-}).call(this);
+}
+
+var draw = new draw();

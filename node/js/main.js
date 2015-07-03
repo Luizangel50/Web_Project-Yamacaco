@@ -1,4 +1,4 @@
-$(function() {
+function main(){
   var FADE_TIME = 150; // ms
   var TYPING_TIMER_LENGTH = 400; // ms
   var COLORS = [
@@ -236,7 +236,7 @@ $(function() {
     addParticipantsMessage(data);
   });
 
-  // Whenever the server emits 'new message', update the chat body
+  // // Whenever the server emits 'new message', update the chat body
   // socket.on('new message', function (data) {
   //   addChatMessage(data);
   // });
@@ -263,4 +263,6 @@ $(function() {
   socket.on('stop typing', function (data) {
     removeChatTyping(data);
   });
-});
+}
+
+var main = new main();

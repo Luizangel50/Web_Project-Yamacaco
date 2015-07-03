@@ -164,3 +164,24 @@ canvas {
 	margin: 20px auto;
 	border: 5px solid #E8E8E8;
 	display: block;}
+
+
+/* Added 02/07/15 */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font: 13px Helvetica, Arial; }
+    form { padding: 2px 28px; bottom: 0; width: 100%; left: 0; }
+    form input { border: solid; padding: 10px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; margin: 0 -28px;}
+    form button { right: 2px; position: absolute; width: 53px; background: rgb(0, 153, 153); border: double; padding: 10px; }
+    #chatArea { list-style-pe: none; margin: 0; padding: 0; width: 100%; word-wrap: break-word; display: inline-block;}
+    #chatArea li {position:elative; padding: 5px 10px; width: 100%; word-wrap: break-word; }
+    #chatArea li:nth-child(d) { background: #eee; width: 100%; word-wrap: break-word; }
+.blackText{ background-color:black; }
+.whiteText{ background-color:white;}
+.yellowText{ background-color:yellow;}
+.redText{ background-color:red; }
+.blueText{ background-color:blue; }
+.grayText{ background-color:gray; }
+.pinkText{ background-color:pink; }
+.purpleText{ background-color:purple; }
+.greenText{ background-color:green; }
+.redText{ background-color:red; }

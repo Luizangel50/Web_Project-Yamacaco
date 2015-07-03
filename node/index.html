@@ -10,20 +10,8 @@
 	<script type="text/javascript" src="js/draw-script.js"></script>
 	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-	<!--<link rel="stylesheet" href="style.css" />-->
   <link rel="stylesheet" href="styles/style.css" />
 	<title>Yamacaco Chat</title>
-
-	<style type="text/css">
-	* { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { padding: 2px 28px; bottom: 0; width: 100%; left: 0; }
-      form input { border: solid; padding: 10px; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; width: 100%; margin: 0 -28px;}
-      form button { right: 2px; position: absolute; width: 53px; background: rgb(0, 153, 153); border: double; padding: 10px; }
-      #chatArea { list-style-type: none; margin: 0; padding: 0; width: 100%; word-wrap: break-word; display: inline-block;}
-      #chatArea li {position: relative; padding: 5px 10px; width: 100%; word-wrap: break-word; }
-      #chatArea li:nth-child(odd) { background: #eee; width: 100%; word-wrap: break-word; }
-    </style>
 </head>
 <body>
 
@@ -36,10 +24,18 @@
     </li>
 
     <li class="chat page">
-    	<p style="margin-top: 5px; "><label style="color: white">Drawing tool: <select id="dtool">
-    		<option value="pencil">Pencil</option>
-            <option value="line">Line</option>
-            <option value="rect">Rectangle</option>
+    	<p style="margin-top: 5px; "><label style="color: white">Drawing Color: 
+        <select id="dtool" onchange="this.className=this.options[this.selectedIndex].className" class="whiteText" style=this.options[this.selectedIndex].style>
+    		  <option class="blackText" style="color: white">Black</option>
+          <option class="whiteText" style="color: black">White</option>
+          <option class="yellowText" >Yellow</option>
+          <option class="redText" >Red</option>
+          <option class="blueText" >Blue</option>
+          <option class="grayText" >Gray</option>
+          <option class="pinkText" >Pink</option>
+          <option class="purpleText" >Purple</option>
+          <option class="greenText" >Green</option>
+          <option class="redText" >Red</option>
         </select></label></p>
 
     	<article style="margin-top: 10px; "><!--canvas is inserted here--></article>
