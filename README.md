@@ -6,6 +6,8 @@ $ npm install --save express@4.10.2
 
 $ npm install --save socket.io
 
+Abra os arquivos server.js e draw-sript.js e modifique seu ip que será utilizado.
+
 Para executar o programa, execute dentro de 'node':
 
 $ node server.js
@@ -13,4 +15,4 @@ $ node server.js
 Ao final do último comando acima, deve aparecer no terminal:
 
 $ node server.js
-listening on *:4000
+listening on port 4000
